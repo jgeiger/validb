@@ -14,10 +14,10 @@ Check your database for invalid models.
 ## Usage
 
 ### All models
-    thor validb:validate 
+    rake validb:validate 
 
 ### Specific models
-    thor validb:validate Model,Model
+    rake validb:validate[Model,Model]
 
 ## License
 Released under the MIT License
