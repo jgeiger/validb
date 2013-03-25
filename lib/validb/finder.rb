@@ -9,7 +9,7 @@ module Validb
       private
 
       def all
-        @models ||= ActiveRecord::Base.descendants.select { |model| model.table_name }
+        @models ||= ActiveRecord::Base.descendants.select { |model| model.table_exists? }
       end
 
       def filter_models(model_names)

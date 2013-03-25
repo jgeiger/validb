@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Validb::Finder do
+  class NoTable < ActiveRecord::Base
+  end
+
   describe ".get_models" do
     context "with an empty string" do
       Validb::Finder.get_models("").should =~ [Post, Blog, Comment]
