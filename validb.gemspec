@@ -16,9 +16,8 @@ Gem::Specification.new do |s|
   s.licenses    = ["MIT"]
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
+  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency 'activerecord', '>=3'
-  s.add_dependency 'activesupport', '>=3'
+  s.add_dependency 'rails', '>=3'
 end
