@@ -12,6 +12,7 @@ module Validb
       private
 
       def validate_batch(record_batch)
+        puts "."
         record_batch.each do |record|
           RecordValidator.validate(record)
         end

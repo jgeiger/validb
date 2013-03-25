@@ -17,7 +17,7 @@ describe Validb::RecordValidator do
         record = Blog.new
         record.save(validate: false)
 
-        $stdout.should_receive(:puts).with("#{record.id} - Title can't be blank")
+        $stdout.should_receive(:puts).with("Blog:#{record.id} - Title can't be blank")
 
         Validb::RecordValidator.validate(record)
       end

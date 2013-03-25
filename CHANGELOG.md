@@ -1,5 +1,6 @@
 ## 0.0.3, released 2013-03-25
 * Use table_exists? in place of table name
+* Add progress indicator during run
 
 ## 0.0.2, released 2013-03-25
 * Change to dependency on rails
