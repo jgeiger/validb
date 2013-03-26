@@ -1,11 +1,13 @@
 module Validb
   class Checker
-    class << self
-      def check(model_names)
-        models = Validb::Finder.get_models(model_names)
-        models.each do |model|
-          Validb::ModelValidator.validate(model)
-        end
+
+    def initialize(logger)
+      @model_validator = Validb::ModelValidator.new(logger)
+    end
+
+    def check(models)
+      models.each do |model|
+        @model_validator.validate(model)
       end
     end
   end

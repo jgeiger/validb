@@ -1,8 +1,19 @@
 module Validb
   class RecordValidator
-    def self.validate(record)
+
+    def initialize(logger)
+      @logger = logger
+    end
+
+    def validate(record)
       if !record.valid?
-        puts "#{record.class.name}:#{record.id} - #{record.errors.full_messages.join(',')}"
+        @logger.out(
+          {
+            model: record.class.name,
+            id: record.id,
+            error_messages: record.errors.full_messages.join(',')
+          }
+        )
       end
     end
   end

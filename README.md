@@ -13,11 +13,14 @@ Check your database for invalid models.
 
 ## Usage
 
-### All models
+### All models, default logger
     rake validb:validate 
 
 ### Specific models
-    rake validb:validate[Model,Model]
+    rake validb:validate models="Model,Model"
+
+### Specific logger
+    rake validb:validate logger="Validb::ConsoleLogger"
 
 ## License
 Released under the MIT License

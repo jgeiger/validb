@@ -4,17 +4,26 @@ describe Validb::Finder do
   class NoTable < ActiveRecord::Base
   end
 
-  describe ".get_models" do
+  describe "#models" do
     context "with an empty string" do
-      Validb::Finder.get_models("").should =~ [Post, Blog, Comment]
+      it "returns all the models with tables" do
+        finder = Validb::Finder.new("")
+        finder.models.should =~ [Post, Blog, Comment]
+      end
     end
 
     context "valid model names" do
-      Validb::Finder.get_models("Post, Blog").should =~ [Post, Blog]
+      it "returns all the selected models with tables" do
+        finder = Validb::Finder.new("Post, Blog")
+        finder.models.should =~ [Post, Blog]
+      end
     end
 
     context "with invalid model names" do
-      Validb::Finder.get_models("Post, Blog, Fake").should =~ [Post, Blog]
+      it "returns all the valid models with tables" do
+        finder = Validb::Finder.new("Post, Blog, Fake")
+        finder.models.should =~ [Post, Blog]
+      end
     end
   end
 end

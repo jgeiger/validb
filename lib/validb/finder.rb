@@ -1,24 +1,22 @@
 module Validb
   class Finder
-    class << self
-      def get_models(model_name_string)
-        model_name_string ||= ""
-        filter_models(model_name_string.split(",").map(&:strip))
-      end
 
-      private
+    def initialize(model_name_string)
+      @model_name_string = model_name_string || ""
+    end
 
-      def all
-        @models ||= ActiveRecord::Base.descendants.select { |model| model.table_exists? }
-      end
+    def models
+      model_names.empty? ? all : all.select { |model| model_names.include?(model.name) }
+    end
 
-      def filter_models(model_names)
-        if model_names.any?
-          all.select { |model| model_names.include?(model.name) }
-        else
-          all
-        end
-      end
+    private
+
+    def model_names
+      @model_names ||= @model_name_string.split(",").map(&:strip)
+    end
+
+    def all
+      @models ||= ActiveRecord::Base.descendants.select { |model| model.table_exists? }
     end
   end
 end

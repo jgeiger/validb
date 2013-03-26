@@ -1,21 +1,14 @@
 module Validb
   class ModelValidator
-    class << self
-      def validate(model)
-        puts "Checking #{model}"
 
-        model.find_in_batches do |batch|
-          validate_batch(batch)
-        end
-      end
+    def initialize(logger)
+      @batcher = Validb::Batcher.new(logger)
+    end
 
-      private
-
-      def validate_batch(record_batch)
-        puts "."
-        record_batch.each do |record|
-          RecordValidator.validate(record)
-        end
+    def validate(model)
+      puts "Checking #{model}"
+      model.find_in_batches do |record_batch|
+        @batcher.validate(record_batch)
       end
     end
   end
