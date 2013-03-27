@@ -1,0 +1,10 @@
+{
+  "ignored_models": [
+    "Blog",
+    "Post",
+    "Fake"
+  ],
+  "ignored_prefixes": [
+    "Api"
+  ]
+}

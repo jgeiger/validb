@@ -19,17 +19,26 @@ ActiveRecord::Schema.define do
 
   create_table :blogs, :force => true do |t|
     t.string :title
-    t.timestamps
   end
 
   create_table :posts, :force => true do |t|
     t.string :title
-    t.timestamps
   end
 
   create_table :comments, :force => true do |t|
     t.string :body
-    t.timestamps
+  end
+
+  create_table :users, :force => true do |t|
+    t.string :name
+  end
+
+  create_table :people, :force => true do |t|
+    t.string :name
+  end
+
+  create_table :approvals, :force => true do |t|
+    t.boolean :name
   end
 end
 
@@ -38,7 +47,16 @@ class Blog < ActiveRecord::Base
 end
 
 class Post < ActiveRecord::Base
+  validates :title, presence: true
 end
 
 class Comment < ActiveRecord::Base
+  validates :body, presence: true
+end
+
+class Person < ActiveRecord::Base
+  validates :name, presence: true
+end
+
+class User < ActiveRecord::Base
 end

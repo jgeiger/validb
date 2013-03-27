@@ -3,13 +3,40 @@ namespace :validb do
   task :validate => :environment do
     models = ENV["models"] || ""
     logger = ENV["logger"] || "Validb::ConsoleLogger"
+    filename = ENV["config"] || default_configuration_file
 
     # force all models to load so we can find them
     Rails.application.eager_load!
-    finder = Validb::Finder.new(models)
+
+    configuration = Validb::Configuration.new(filename)
+    finder = Validb::Finder.new(configuration, models)
 
     console_logger = logger.constantize.new
     checker = Validb::Checker.new(console_logger)
     checker.check(finder.models)
+  end
+
+  desc "Generate config/validb.json"
+  task :generate_config => :environment do
+    if File.exists?(default_configuration_file)
+      puts "Configuration already exists at config/validb.json"
+    else
+      puts "Writing configuration to config/validb.json"
+      write_configuration_file
+    end
+  end
+
+  def default_configuration_file
+    @default_configuration_file ||= Rails.root.join('config', 'validb.json')
+  end
+
+  def default_configuration
+    { "ignored_models" => [], "ignored_prefixes" => [] }
+  end
+
+  def write_configuration_file
+    File.open(default_configuration_file,'w') do |file|
+      file.puts JSON.pretty_generate(default_configuration)
+    end
   end
 end
