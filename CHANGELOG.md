@@ -1,3 +1,10 @@
+## 1.0.0, released 2013-03-27
+* Add rake task to generate config file
+* Allow filtering of unwanted models
+* Allow filtering of unwanted prefixes
+* Don't check models without validation
+* Don't check child models of STI
+
 ## 0.1.0, released 2013-03-26
 * Rake task now takes parameters differently
 * Classes now use instances, not class methods
