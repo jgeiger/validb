@@ -14,6 +14,10 @@ module Validb
       config["ignored_prefixes"]
     end
 
+    def batch_size
+      config["batch_size"]
+    end
+
     private
 
     def print_ignored
@@ -28,7 +32,8 @@ module Validb
                     else
                       {
                         "ignored_models" => [],
-                        "ignored_prefixes" => []
+                        "ignored_prefixes" => [],
+                        "batch_size" => 100
                       }
                     end
                   end

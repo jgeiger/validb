@@ -6,5 +6,6 @@
   ],
   "ignored_prefixes": [
     "Api"
-  ]
+  ],
+  "batch_size": 200
 }
