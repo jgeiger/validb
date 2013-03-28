@@ -19,7 +19,7 @@ describe Validb::ModelFilterer do
 
       models = [User, Author, Blog, Post, Api::Approval, Comment, Person]
 
-      model_filterer.filter(models).should =~ [Comment, Person]
+      model_filterer.filter(models).should == [Author, Comment]
     end
   end
 end

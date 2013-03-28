@@ -17,7 +17,7 @@ describe Validb::Finder do
       it "returns all the models with tables" do
         configuration = Validb::Configuration.new("")
         finder = Validb::Finder.new(configuration, "")
-        finder.models.should =~ [Post, Blog, Comment, Person]
+        finder.models.should == [Author, Blog, Comment, Post]
       end
     end
 
@@ -25,7 +25,7 @@ describe Validb::Finder do
       it "returns all the selected models with tables" do
         configuration = Validb::Configuration.new("")
         finder = Validb::Finder.new(configuration, "Post, Blog")
-        finder.models.should =~ [Post, Blog]
+        finder.models.should == [Blog, Post]
       end
     end
 
@@ -33,7 +33,7 @@ describe Validb::Finder do
       it "returns all the valid models with tables" do
         configuration = Validb::Configuration.new("")
         finder = Validb::Finder.new(configuration, "Post, Blog, Fake")
-        finder.models.should =~ [Post, Blog]
+        finder.models.should == [Blog, Post]
       end
     end
   end
