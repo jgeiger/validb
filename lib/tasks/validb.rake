@@ -7,6 +7,7 @@ namespace :validb do
 
     # force all models to load so we can find them
     Rails.application.eager_load!
+    ActiveRecord::Base.logger = nil
 
     params = Validb::Configuration.new(filename).params
     finder = Validb::Finder.new(params, models)

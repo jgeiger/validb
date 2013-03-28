@@ -1,3 +1,6 @@
+## 1.1.1, released 2013-03-28
+* Don't show the SQL output for every query
+
 ## 1.1.0, released 2013-03-28
 * CHANGE: Don't check base models if we have decendants
 * Parameter for the batch size
