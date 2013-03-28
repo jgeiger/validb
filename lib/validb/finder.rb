@@ -1,8 +1,8 @@
 module Validb
   class Finder
 
-    def initialize(configuration, model_name_string)
-      @model_filterer = Validb::ModelFilterer.new(configuration)
+    def initialize(params, model_name_string)
+      @model_filterer = Validb::ModelFilterer.new(params)
       @model_name_string = model_name_string || ""
     end
 

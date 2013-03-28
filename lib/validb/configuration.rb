@@ -6,6 +6,12 @@ module Validb
       print_ignored
     end
 
+    def params
+      Validb::Parameters.new(ignored_models, ignored_prefixes, batch_size)
+    end
+
+    private
+
     def ignored_models
       convert_model_name_strings_to_constants
     end
@@ -17,8 +23,6 @@ module Validb
     def batch_size
       config["batch_size"]
     end
-
-    private
 
     def print_ignored
       puts "Ignoring prefixes: #{ignored_prefixes.join(',')}" if ignored_prefixes.any?

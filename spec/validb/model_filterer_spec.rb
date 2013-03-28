@@ -14,8 +14,8 @@ describe Validb::ModelFilterer do
   describe "#models" do
     it "returns all the non filtered models" do
       filename = File.expand_path(File.dirname(__FILE__) + '/../config/validb.json')
-      configuration = Validb::Configuration.new(filename)
-      model_filterer = Validb::ModelFilterer.new(configuration)
+      params = Validb::Configuration.new(filename).params
+      model_filterer = Validb::ModelFilterer.new(params)
 
       models = [User, Author, Blog, Post, Api::Approval, Comment, Person]
 

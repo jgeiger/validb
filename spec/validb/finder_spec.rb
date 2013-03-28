@@ -6,33 +6,33 @@ describe Validb::Finder do
 
   describe "#initialize" do
     it "creates a model filterer" do
-      configuration = double('configuration')
-      Validb::ModelFilterer.should_receive(:new).with(configuration)
-      Validb::Finder.new(configuration, "")
+      params = double('params')
+      Validb::ModelFilterer.should_receive(:new).with(params)
+      Validb::Finder.new(params, "")
     end
   end
 
   describe "#models" do
     context "with an empty string" do
       it "returns all the models with tables" do
-        configuration = Validb::Configuration.new("")
-        finder = Validb::Finder.new(configuration, "")
+        params = Validb::Configuration.new("").params
+        finder = Validb::Finder.new(params, "")
         finder.models.should == [Author, Blog, Comment, Post]
       end
     end
 
     context "valid model names" do
       it "returns all the selected models with tables" do
-        configuration = Validb::Configuration.new("")
-        finder = Validb::Finder.new(configuration, "Post, Blog")
+        params = Validb::Configuration.new("").params
+        finder = Validb::Finder.new(params, "Post, Blog")
         finder.models.should == [Blog, Post]
       end
     end
 
     context "with invalid model names" do
       it "returns all the valid models with tables" do
-        configuration = Validb::Configuration.new("")
-        finder = Validb::Finder.new(configuration, "Post, Blog, Fake")
+        params = Validb::Configuration.new("").params
+        finder = Validb::Finder.new(params, "Post, Blog, Fake")
         finder.models.should == [Blog, Post]
       end
     end

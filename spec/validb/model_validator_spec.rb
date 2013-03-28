@@ -4,8 +4,9 @@ describe Validb::ModelValidator do
   describe "#initialize" do
     it "creates a model validator" do
       logger = double('logger')
+      params = double('params')
       Validb::Batcher.should_receive(:new).with(logger)
-      Validb::ModelValidator.new(logger)
+      Validb::ModelValidator.new(params, logger)
     end
   end
 
@@ -13,9 +14,11 @@ describe Validb::ModelValidator do
     it "validates the records of the model" do
       model = Blog
       logger = double('logger')
-      model_validator = Validb::ModelValidator.new(logger)
+      params = double('params', batch_size: 200)
+      model_validator = Validb::ModelValidator.new(params, logger)
 
       $stdout.should_receive(:puts).with("Checking Blog")
+      model.should_receive(:find_in_batches).with(batch_size: 200)
       model_validator.validate(model)
     end
   end

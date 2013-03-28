@@ -8,11 +8,11 @@ namespace :validb do
     # force all models to load so we can find them
     Rails.application.eager_load!
 
-    configuration = Validb::Configuration.new(filename)
-    finder = Validb::Finder.new(configuration, models)
+    params = Validb::Configuration.new(filename).params
+    finder = Validb::Finder.new(params, models)
 
     logger = logger_class.constantize.new
-    checker = Validb::Checker.new(logger)
+    checker = Validb::Checker.new(params, logger)
     checker.check(finder.models)
   end
 
@@ -31,7 +31,7 @@ namespace :validb do
   end
 
   def default_configuration
-    { "ignored_models" => [], "ignored_prefixes" => [] }
+    { "ignored_models" => [], "ignored_prefixes" => [], "batch_size" => 100 }
   end
 
   def write_configuration_file

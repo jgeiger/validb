@@ -13,4 +13,5 @@ module Validb
   autoload :ModelValidator, 'validb/model_validator'
   autoload :Batcher, 'validb/batcher'
   autoload :RecordValidator, 'validb/record_validator'
+  autoload :Parameters, 'validb/parameters'
 end

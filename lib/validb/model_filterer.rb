@@ -1,8 +1,8 @@
 module Validb
   class ModelFilterer
 
-    def initialize(configuration)
-      @configuration = configuration
+    def initialize(params)
+      @params = params
     end
 
     def filter(models)
@@ -15,11 +15,11 @@ module Validb
     private
 
     def ignored_models
-      @configuration.ignored_models
+      @params.ignored_models
     end
 
     def ignored_prefixes
-      @configuration.ignored_prefixes
+      @params.ignored_prefixes
     end
 
     def non_inherited_models(models)
