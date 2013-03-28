@@ -15,7 +15,7 @@ describe Validb::Batcher do
       logger = double('logger')
       batcher = Validb::Batcher.new(logger)
 
-      $stdout.should_receive(:puts).with(".")
+      $stdout.should_receive(:print).with(".")
       batcher.validate(record_batch)
     end
   end

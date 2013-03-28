@@ -6,7 +6,7 @@ module Validb
     end
 
     def validate(record_batch)
-      puts "."
+      $stdout.print "."
       record_batch.each do |record|
         @record_validator.validate(record)
       end

@@ -1,7 +1,10 @@
 ## 1.1.0, released 2013-03-28
 * CHANGE: Don't check base models if we have decendants
 * Parameter for the batch size
-* Sort model output for progress reporting
+* Sort models to be validated
+* Fix progress reporting output
+* Show total model record count
+* Show model table name
 
 ## 1.0.0, released 2013-03-27
 * Add rake task to generate config file

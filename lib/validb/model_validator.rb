@@ -7,7 +7,7 @@ module Validb
     end
 
     def validate(model)
-      puts "Checking #{model}"
+      $stdout.print "\nChecking #{model}(#{model.table_name}) (#{model.count} records)."
       model.find_in_batches(batch_size: @params.batch_size) do |record_batch|
         @batcher.validate(record_batch)
       end
