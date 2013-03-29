@@ -1,3 +1,6 @@
+## 1.1.2, released 2013-03-29
+* Enable the logger, but set the log level to block SQL output
+
 ## 1.1.1, released 2013-03-28
 * Don't show the SQL output for every query
 
