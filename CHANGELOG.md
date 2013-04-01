@@ -1,4 +1,4 @@
-## 1.1.3, released 2013-04-21
+## 1.1.3, released 2013-04-01
 * Remove extra period in output to remove batch confusion
 * Set default batch size to 1000
 
