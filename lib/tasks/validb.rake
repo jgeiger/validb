@@ -32,7 +32,7 @@ namespace :validb do
   end
 
   def default_configuration
-    { "ignored_models" => [], "ignored_prefixes" => [], "batch_size" => 100 }
+    { "ignored_models" => [], "ignored_prefixes" => [], "batch_size" => 1000 }
   end
 
   def write_configuration_file

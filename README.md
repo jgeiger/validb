@@ -39,7 +39,7 @@ Check your database for invalid models.
       "ignored_prefixes": [
         "Api"
       ],
-      "batch_size": 100
+      "batch_size": 1000
     }
 
 ## License

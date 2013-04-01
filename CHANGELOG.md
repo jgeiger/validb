@@ -1,3 +1,7 @@
+## 1.1.3, released 2013-04-21
+* Remove extra period in output to remove batch confusion
+* Set default batch size to 1000
+
 ## 1.1.2, released 2013-03-29
 * Enable the logger, but set the log level to block SQL output
 

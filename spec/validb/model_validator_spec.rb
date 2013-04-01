@@ -17,7 +17,7 @@ describe Validb::ModelValidator do
       params = double('params', batch_size: 200)
       model_validator = Validb::ModelValidator.new(params, logger)
 
-      $stdout.should_receive(:print).with("\nChecking Blog(blogs) (0 records).")
+      $stdout.should_receive(:print).with("\nChecking Blog(blogs) (0 records)")
       model.should_receive(:find_in_batches).with(batch_size: 200)
       model_validator.validate(model)
     end
