@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/validb.png)](https://rubygems.org/gems/validb)
 [![Dependency Status](https://gemnasium.com/jgeiger/validb.png)](https://gemnasium.com/jgeiger/validb)
 [![Build Status](https://travis-ci.org/jgeiger/validb.png)](https://travis-ci.org/jgeiger/validb)
+[![Code Climate](https://codeclimate.com/github/jgeiger/validb.png)](https://codeclimate.com/github/jgeiger/validb)
 
 ## Description
 
