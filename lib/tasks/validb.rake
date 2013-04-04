@@ -2,7 +2,7 @@ namespace :validb do
   desc "Check DB for invalid records"
   task :validate => :environment do
     models = ENV["models"] || ""
-    logger_class = ENV["logger"] || "Validb::ConsoleLogger"
+    logger_class = ENV["logger"] || "Validb::Logger::FileSystem"
     filename = ENV["config"] || default_configuration_file
 
     # force all models to load so we can find them
@@ -13,6 +13,8 @@ namespace :validb do
     finder = Validb::Finder.new(params, models)
 
     logger = logger_class.constantize.new
+    logger.prepare
+
     checker = Validb::Checker.new(params, logger)
     checker.check(finder.models)
   end

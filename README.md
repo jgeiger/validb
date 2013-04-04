@@ -25,7 +25,7 @@ Check your database for invalid models.
     rake validb:validate models="Model,Model"
 
 ### Specific logger
-    rake validb:validate logger="Validb::ConsoleLogger"
+    rake validb:validate logger="Validb::Logger::Console"
 
 ### Generate config file in config/validb.json
     rake validb:generate_config
