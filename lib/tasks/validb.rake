@@ -15,8 +15,10 @@ namespace :validb do
     logger = logger_class.constantize.new
     logger.prepare
 
+    started_at = Time.now
     checker = Validb::Checker.new(params, logger)
     checker.check(finder.models)
+    puts "\nFinished in #{Time.now-started_at} seconds"
   end
 
   desc "Generate config/validb.json"
