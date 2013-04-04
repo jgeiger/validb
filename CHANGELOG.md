@@ -1,3 +1,8 @@
+## 1.2.0, released 2013-04-04
+* FileSystem logger is now default
+* Print an 'x' for each record validation failure when using FileSystem logger
+* Output number of seconds for task completion
+
 ## 1.1.3, released 2013-04-01
 * Remove extra period in output to remove batch confusion
 * Set default batch size to 1000
