@@ -33,8 +33,6 @@ describe Validb::Logger::FileSystem do
       File.should_receive(:open).with("validb.log", "ab+").and_yield(file)
       file.should_receive(:puts).with("Blog:1 - Error message")
 
-      $stdout.should_receive(:print).with("x")
-
       hash = { model: Blog, id: 1, error_messages: "Error message" }
       file_logger = Validb::Logger::FileSystem.new
       file_logger.out(hash)

@@ -10,7 +10,6 @@ module Validb
         File.open(filename, "ab+") do |file|
           file.puts("#{record_hash[:model]}:#{record_hash[:id]} - #{record_hash[:error_messages]}")
         end
-        $stdout.print("x")
       end
 
       private

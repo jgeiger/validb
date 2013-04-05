@@ -1,3 +1,6 @@
+## 1.2.1, released 2013-04-05
+* Revert printing 'x' on validation failure
+
 ## 1.2.0, released 2013-04-04
 * FileSystem logger is now default
 * Print an 'x' for each record validation failure when using FileSystem logger
