@@ -10,22 +10,15 @@
 Check your database for invalid models.
 
 ## Installation
-    gem install validb
-
-### Rails 3 In Gemfile
+Add this line to your Gemfile
 
     gem 'validb'
 
+And then:
+
+    bundle
+
 ## Usage
-
-### All models, default logger
-    rake validb:validate 
-
-### Specific models
-    rake validb:validate models="Model,Model"
-
-### Specific logger
-    rake validb:validate logger="Validb::Logger::Console"
 
 ### Generate config file in config/validb.json
     rake validb:generate_config
@@ -42,6 +35,20 @@ Check your database for invalid models.
       ],
       "batch_size": 1000
     }
+
+### Launch sidekiq
+    sidekiq -L log/sidekiq.log
+
+### Validate all model records
+    rake validb:validate 
+
+### Validate specific model records
+    rake validb:validate models="Blog,Comment"
+
+## Uses
+[sidekiq](http://mperham.github.io/sidekiq)
+
+[sidekiq_status](https://github.com/cryo28/sidekiq_status)
 
 ## License
 Released under the MIT License

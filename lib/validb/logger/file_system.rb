@@ -1,14 +1,15 @@
 module Validb
   module Logger
-    class FileSystem < Base
+    class FileSystem
       def prepare
         File.delete(filename) if File.exists?(filename)
+        File.open(filename, "w") {}
         $stdout.puts("Writing output to #{filename}")
       end
 
-      def out(record_hash)
+      def out(message)
         File.open(filename, "ab+") do |file|
-          file.puts("#{record_hash[:model]}:#{record_hash[:id]} - #{record_hash[:error_messages]}")
+          file.puts(message)
         end
       end
 

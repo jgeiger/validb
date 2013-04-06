@@ -13,9 +13,11 @@ module Validb
   autoload :Batcher, 'validb/batcher'
   autoload :RecordValidator, 'validb/record_validator'
   autoload :Parameters, 'validb/parameters'
+  autoload :FileSystemLoggerWorker, 'validb/file_system_logger_worker'
+  autoload :QueueMonitor, 'validb/queue_monitor'
+  autoload :Counter, 'validb/counter'
+  autoload :Tasker, 'validb/tasker'
   module Logger
-    autoload :Base, 'validb/logger/base'
     autoload :FileSystem, 'validb/logger/file_system'
-    autoload :Console, 'validb/logger/console'
   end
 end

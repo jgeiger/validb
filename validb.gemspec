@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'rails', '>=3'
+  s.add_dependency 'sidekiq'
+  s.add_dependency 'sidekiq_status'
 end

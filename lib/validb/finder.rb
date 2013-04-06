@@ -7,7 +7,7 @@ module Validb
     end
 
     def models
-      @model_filterer.filter(selected_models)
+      @model_filterer.filter(selected_models).map(&:name)
     end
 
     private

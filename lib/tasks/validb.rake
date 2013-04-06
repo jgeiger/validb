@@ -2,23 +2,9 @@ namespace :validb do
   desc "Check DB for invalid records"
   task :validate => :environment do
     models = ENV["models"] || ""
-    logger_class = ENV["logger"] || "Validb::Logger::FileSystem"
     filename = ENV["config"] || default_configuration_file
 
-    # force all models to load so we can find them
-    Rails.application.eager_load!
-    ActiveRecord::Base.logger.level = 1
-
-    params = Validb::Configuration.new(filename).params
-    finder = Validb::Finder.new(params, models)
-
-    logger = logger_class.constantize.new
-    logger.prepare
-
-    started_at = Time.now
-    checker = Validb::Checker.new(params, logger)
-    checker.check(finder.models)
-    puts "\nFinished in #{Time.now-started_at} seconds"
+    Validb::Tasker.new(models, filename).run
   end
 
   desc "Generate config/validb.json"

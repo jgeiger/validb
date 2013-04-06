@@ -1,19 +1,10 @@
 module Validb
   class RecordValidator
 
-    def initialize(logger)
-      @logger = logger
-    end
-
     def validate(record)
       if !record.valid?
-        @logger.out(
-          {
-            model: record.class.name,
-            id: record.id,
-            error_messages: record.errors.full_messages.join(',')
-          }
-        )
+        message = "FAIL: #{record.class.name}:#{record.id} - #{record.errors.full_messages.join(',')}"
+        Validb::FileSystemLoggerWorker.perform_async(message)
       end
     end
   end

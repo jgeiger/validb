@@ -30,12 +30,12 @@ describe Validb::Logger::FileSystem do
   describe "#out" do
     it "writes the hash output to a file and prints an X" do
       file = double('file')
+      message = "Blog:1 - Error message"
       File.should_receive(:open).with("validb.log", "ab+").and_yield(file)
-      file.should_receive(:puts).with("Blog:1 - Error message")
+      file.should_receive(:puts).with(message)
 
-      hash = { model: Blog, id: 1, error_messages: "Error message" }
       file_logger = Validb::Logger::FileSystem.new
-      file_logger.out(hash)
+      file_logger.out(message)
     end
   end
 end

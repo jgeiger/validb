@@ -1,25 +1,30 @@
 require 'spec_helper'
 
 describe Validb::ModelValidator do
-  describe "#initialize" do
-    it "creates a model validator" do
-      logger = double('logger')
-      params = double('params')
-      Validb::Batcher.should_receive(:new).with(logger)
-      Validb::ModelValidator.new(params, logger)
+  describe "#perform" do
+    context "with available records" do
+      it "creates a batcher job" do
+        record = Blog.new(title: "title")
+        record.save
+        model_validator = Validb::ModelValidator.new
+        jid = Validb::ModelValidator.perform_async("Blog", 100)
+
+        expect {
+          model_validator.perform(jid)
+        }.to change(Validb::Batcher.jobs, :size).by(1)
+      end
     end
-  end
 
-  describe "#validate" do
-    it "validates the records of the model" do
-      model = Blog
-      logger = double('logger')
-      params = double('params', batch_size: 200)
-      model_validator = Validb::ModelValidator.new(params, logger)
+    context "with no available records" do
+      it "does not create a batcher job" do
+        Blog.delete_all
+        model_validator = Validb::ModelValidator.new
+        jid = Validb::ModelValidator.perform_async("Blog", 100)
 
-      $stdout.should_receive(:print).with("\nChecking Blog(blogs) (0 records)")
-      model.should_receive(:find_in_batches).with(batch_size: 200)
-      model_validator.validate(model)
+        expect {
+          model_validator.perform(jid)
+        }.not_to change(Validb::Batcher.jobs, :size)
+      end
     end
   end
 end

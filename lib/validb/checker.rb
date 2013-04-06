@@ -1,13 +1,10 @@
 module Validb
   class Checker
+    include SidekiqStatus::Worker
 
-    def initialize(params, logger)
-      @model_validator = Validb::ModelValidator.new(params, logger)
-    end
-
-    def check(models)
-      models.each do |model|
-        @model_validator.validate(model)
+    def perform(model_names, batch_size)
+      model_names.each do |model_name|
+        Validb::ModelValidator.perform_async(model_name, batch_size)
       end
     end
   end

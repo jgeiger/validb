@@ -1,22 +1,16 @@
 require 'spec_helper'
 
 describe Validb::Batcher do
-  describe "#initialize" do
-    it "creates a batcher" do
-      logger = double('logger')
-      Validb::RecordValidator.should_receive(:new).with(logger)
-      Validb::Batcher.new(logger)
-    end
-  end
+  describe "#perform" do
+    it "sends an invalid record logging event" do
+      record = Blog.new
+      record.save(validate: false)
+      batcher = Validb::Batcher.new
+      jid = Validb::Batcher.perform_async("Blog", [record.id])
 
-  describe "#validate" do
-    it "validates the batch of records" do
-      record_batch = [Blog.new(title: "Title")]
-      logger = double('logger')
-      batcher = Validb::Batcher.new(logger)
-
-      $stdout.should_receive(:print).with(".")
-      batcher.validate(record_batch)
+      expect {
+        batcher.perform(jid)
+      }.to change(Validb::FileSystemLoggerWorker.jobs, :size).by(1)
     end
   end
 end

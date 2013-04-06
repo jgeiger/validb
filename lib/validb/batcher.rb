@@ -1,14 +1,11 @@
 module Validb
   class Batcher
+    include SidekiqStatus::Worker
 
-    def initialize(logger)
-      @record_validator = RecordValidator.new(logger)
-    end
-
-    def validate(record_batch)
-      $stdout.print "."
-      record_batch.each do |record|
-        @record_validator.validate(record)
+    def perform(model_name, model_ids)
+      model_name.constantize.find(model_ids).each do |record|
+        record_validator = Validb::RecordValidator.new
+        record_validator.validate(record)
       end
     end
   end

@@ -1,27 +1,14 @@
 require 'spec_helper'
 
 describe Validb::Checker do
-  describe "#initialize" do
-    it "creates a checker" do
-      logger = double('logger')
-      params = double('params')
-      Validb::ModelValidator.should_receive(:new).with(params, logger)
-      Validb::Checker.new(params, logger)
-    end
-  end
+  describe "#perform" do
+    it "generates validb model validator jobs" do
+      checker = Validb::Checker.new
+      jid = Validb::Batcher.perform_async(["Blog", "Post"], 100)
 
-  describe "#check" do
-    it "validates the passed in models records" do
-      logger = double('logger')
-      params = double('params')
-      model_validator = double('model_validator')
-      Validb::ModelValidator.should_receive(:new).with(params, logger).and_return(model_validator)
-      checker = Validb::Checker.new(params, logger)
-
-      model_validator.should_receive(:validate).with(Blog)
-      model_validator.should_receive(:validate).with(Post)
-
-      checker.check([Blog, Post])
+      expect {
+        checker.perform(jid)
+      }.to change(Validb::ModelValidator.jobs, :size).by(2)
     end
   end
 end

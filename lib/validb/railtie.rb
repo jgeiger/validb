@@ -1,3 +1,5 @@
+require 'sidekiq'
+require 'sidekiq_status'
 require 'validb'
 require 'rails'
 

@@ -1,3 +1,7 @@
+## 2.0.0, released 2013-04-07
+* Distribute validation jobs using sidekiq
+* Remove console logger
+
 ## 1.2.1, released 2013-04-05
 * Revert printing 'x' on validation failure
 
