@@ -1,10 +1,15 @@
 module Validb
   class Checker
-    include SidekiqStatus::Worker
+    include Resque::Plugins::Status
 
-    def perform(model_names, batch_size)
+    def perform
+      model_names = options["model_names"]
+      batch_size = options["batch_size"]
       model_names.each do |model_name|
-        Validb::ModelValidator.perform_async(model_name, batch_size)
+        Validb::ModelValidator.create(
+          "model_name" => model_name,
+          "batch_size" => batch_size
+        )
       end
     end
   end

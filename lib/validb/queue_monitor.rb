@@ -20,11 +20,11 @@ module Validb
     end
 
     def in_process_jobs?
-      statuses.detect { |job| job.status != "complete" }
+      statuses.detect { |job| job.status != "completed" }
     end
 
     def statuses
-      SidekiqStatus::Container.statuses
+      Resque::Plugins::Status::Hash.statuses
     end
   end
 end

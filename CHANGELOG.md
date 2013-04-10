@@ -1,3 +1,6 @@
+## 2.0.0, released 2013-04-09
+* Switch to resque
+
 ## 2.0.0, released 2013-04-07
 * Distribute validation jobs using sidekiq
 * Remove console logger

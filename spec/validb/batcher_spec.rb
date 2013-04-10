@@ -5,12 +5,12 @@ describe Validb::Batcher do
     it "sends an invalid record logging event" do
       record = Blog.new
       record.save(validate: false)
-      batcher = Validb::Batcher.new
-      jid = Validb::Batcher.perform_async("Blog", [record.id])
+      uuid = Validb::Batcher.create(
+        "model_name" => "Blog",
+        "model_ids" => [record.id]
+      )
 
-      expect {
-        batcher.perform(jid)
-      }.to change(Validb::FileSystemLoggerWorker.jobs, :size).by(1)
+      Resque::Plugins::Status::Hash.status_ids.should include(uuid)
     end
   end
 end

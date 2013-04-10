@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {spec}/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '>=3'
-  s.add_dependency 'sidekiq'
-  s.add_dependency 'sidekiq_status'
+  s.add_dependency 'rails', '~>3.2'
+  s.add_dependency 'resque'
+  s.add_dependency 'resque-status'
 end

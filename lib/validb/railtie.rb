@@ -1,5 +1,5 @@
-require 'sidekiq'
-require 'sidekiq_status'
+require 'resque'
+require 'resque-status'
 require 'validb'
 require 'rails'
 
